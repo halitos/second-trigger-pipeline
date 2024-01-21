@@ -44,7 +44,7 @@ export class SecondTriggerStack extends Stack {
         version: '0.2',
         phases: {
           install: {
-            commands: ['npm ci'],
+            commands: ['npm install'],
           },
           build: {
             commands: ['npx cdk synth --quiet'],
