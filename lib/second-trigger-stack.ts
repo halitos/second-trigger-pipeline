@@ -1,4 +1,4 @@
-import { SecretValue, Stack, StackProps } from 'aws-cdk-lib/core';
+import { SecretValue, Stack, StackProps } from 'aws-cdk-lib';
 // import { CodeBuildAction } from '@aws-cdk/aws-codepipeline-actions';
 import { Artifact, Pipeline } from 'aws-cdk-lib/aws-codepipeline';
 // import { GitHubSourceActionProps, GitHubSourceAction } from '@aws-cdk/aws-codepipeline-actions';
