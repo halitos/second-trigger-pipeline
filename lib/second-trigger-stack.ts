@@ -6,7 +6,7 @@ import { PipelineProject } from 'aws-cdk-lib/aws-codebuild';
 import { BuildSpec } from 'aws-cdk-lib/aws-codebuild';
 import { CodeBuildAction, GitHubSourceAction, GitHubSourceActionProps } from 'aws-cdk-lib/aws-codepipeline-actions';
 import { Construct } from 'constructs';
-import { SecretValue, Stack, StackProps } from 'aws-cdk-lib/core/lib';
+import { SecretValue, Stack, StackProps } from 'aws-cdk-lib';
 
 export class SecondTriggerStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -63,33 +63,33 @@ export class SecondTriggerStack extends Stack {
     // Add synth action to the second stage of the pipeline
     pipeline.addStage({
       stageName: 'Build',
-      // actions: [synthAction],
+      actions: [synthAction],
     });
 
-    // Use CodeBuildAction for other steps
-    const testProject = new PipelineProject(this, 'TestProject', {
-      buildSpec: BuildSpec.fromObject({
-        version: '0.2',
-        phases: {
-          build: {
-            commands: ['npm run test'],
-          },
-        },
-      }),
-      // Configure your CodeBuild project for testing
-    });
+    // // Use CodeBuildAction for other steps
+    // const testProject = new PipelineProject(this, 'TestProject', {
+    //   buildSpec: BuildSpec.fromObject({
+    //     version: '0.2',
+    //     phases: {
+    //       build: {
+    //         commands: ['npm run test'],
+    //       },
+    //     },
+    //   }),
+    //   // Configure your CodeBuild project for testing
+    // });
 
-    const testAction = new CodeBuildAction({
-      actionName: 'TestAction',
-      input: sourceOutput, // Use the output from the GitHubSourceAction
-      project: testProject,
-      // Add other action configuration as needed
-    });
+    // const testAction = new CodeBuildAction({
+    //   actionName: 'TestAction',
+    //   input: sourceOutput, // Use the output from the GitHubSourceAction
+    //   project: testProject,
+    //   // Add other action configuration as needed
+    // });
 
-    // Add test action to the third stage of the pipeline
-    pipeline.addStage({
-      stageName: 'Test',
-      actions: [testAction],
-    });
+    // // Add test action to the third stage of the pipeline
+    // pipeline.addStage({
+    //   stageName: 'Test',
+    //   actions: [testAction],
+    // });
   }
 }
