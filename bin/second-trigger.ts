@@ -19,5 +19,3 @@ new SecondTriggerStack(app, 'SecondTriggerStack', {
 
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });
-
-app.synth()
