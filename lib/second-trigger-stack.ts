@@ -1,4 +1,4 @@
-import { SecretValue, Stack, StackProps } from 'aws-cdk-lib';
+// import { SecretValue, Stack, StackProps } from 'aws-cdk-lib';
 // import { CodeBuildAction } from '@aws-cdk/aws-codepipeline-actions';
 import { Artifact, Pipeline } from 'aws-cdk-lib/aws-codepipeline';
 // import { GitHubSourceActionProps, GitHubSourceAction } from '@aws-cdk/aws-codepipeline-actions';
@@ -6,6 +6,7 @@ import { PipelineProject } from 'aws-cdk-lib/aws-codebuild';
 import { BuildSpec } from 'aws-cdk-lib/aws-codebuild';
 import { CodeBuildAction, GitHubSourceAction, GitHubSourceActionProps } from 'aws-cdk-lib/aws-codepipeline-actions';
 import { Construct } from 'constructs';
+import { SecretValue, Stack, StackProps } from 'aws-cdk-lib/core/lib';
 
 export class SecondTriggerStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -44,7 +45,7 @@ export class SecondTriggerStack extends Stack {
         version: '0.2',
         phases: {
           install: {
-            commands: ['npm ci && tsc'],
+            commands: ['npm ci'],
           },
           build: {
             commands: ['npx cdk synth --quiet'],
